@@ -53,6 +53,8 @@ interface searchParams {
 
 
 
+
+
 export default async function Home({ searchParams }: searchParams) {
   const { query = "", filter= "" } = await searchParams;
 
@@ -94,6 +96,7 @@ export default async function Home({ searchParams }: searchParams) {
           <QuestionCard key={question._id} question={question} />
         ))}
       </div>
+
 
     </>
   );

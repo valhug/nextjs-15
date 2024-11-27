@@ -1,10 +1,12 @@
 import mongoose, { Mongoose } from 'mongoose';
 
-const MONGO_URI = process.env.MONGO_URI as string;
+const MONGODB_URI = process.env.MONGODB_URI as string;
 
-if (!MONGO_URI) {
+if (!MONGODB_URI) {
     throw new Error("Please provide a valid MongoDB URI");
 }
+
+console.log("MONGODB_URI:", MONGODB_URI);
 
 interface MongooseCache {
     conn: Mongoose | null;
@@ -29,7 +31,7 @@ const dbConnect = async (): Promise<Mongoose> => {
     }
 
     if (!cached.promise) {
-        cached.promise = mongoose.connect(MONGO_URI, {
+        cached.promise = mongoose.connect(MONGODB_URI, {
             dbName: "devflow",
     })
     .then((result) => {
